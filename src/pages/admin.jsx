@@ -4,10 +4,11 @@ export default function AdminPage(){
     return(
         <div className="w-full h-full border-4 border-blue-600 flex">
             <div className="w-[400px] h-full bg-red-500 flex flex-col">
-               {/* <a href="/admin">Orders</a>
+                <h1 className="font-bold">Using a tag</h1>
+                <a href="/admin">Orders</a>
                 <a href="/admin/product">Product</a>
-                <a href="/admin/users">Users</a> */}
-
+                <a href="/admin/users">Users</a>
+                <h1 className="font-bold">Using Link tag</h1>
                 <Link to="/admin">Orders</Link>
                 <Link to="/admin/product">Product</Link>
                 <Link to="/admin/users">Users</Link>
