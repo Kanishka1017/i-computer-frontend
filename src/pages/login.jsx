@@ -41,6 +41,9 @@ export default function LoginPage(){
             )
             console.log(respones)
             toast.success("Login Successfull")
+
+            localStorage.setItem("token", respones.data.token)
+            
             if(respones.data.role == "admin"){
                 
                 //window.location.href = "/admin"
