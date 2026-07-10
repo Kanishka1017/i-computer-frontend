@@ -4,6 +4,7 @@ import { MdInventory2 } from "react-icons/md";
 import { FaUser } from "react-icons/fa";
 import AdminProductPage from "./admin/adminProductPage";
 import AdminAddProductPage from "./admin/adminAddProductPage";
+import AdminUpdateProductPage from "./admin/adminUpdateProduct";
 
 export default function AdminPage(){
     return(
@@ -23,6 +24,7 @@ export default function AdminPage(){
                     <Route path="/product" element={<AdminProductPage/>}></Route>
                     <Route path="/users" element={<h1>Users Page</h1>}></Route>
                     <Route path="/add_product" element={<AdminAddProductPage/>}></Route>
+                    <Route path="/update-product" element={<AdminUpdateProductPage/>}></Route>
                 </Routes>
             </div>
         </div>

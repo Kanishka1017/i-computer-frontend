@@ -50,13 +50,11 @@ export default function LoginPage(){
                 navigate("/admin")
 
             }else{
-                //we should go to custommer page
+                navigate("/")
             }
 
-        }catch(error){
-                console.log(error)
-                console.log("Login Failed")
-                toast.error("Login Failed")
+        }catch(err){
+                toast.error(err?.response?.data?.message || "Failed to Login")
             }
         
     }

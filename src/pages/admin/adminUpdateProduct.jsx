@@ -1,25 +1,28 @@
 import { useState } from "react"
 import axios from "axios";
 import toast from "react-hot-toast";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import uploadFile from "../../utils/mediaUpload";
 
-export default function AdminAddProductPage(){
+export default function AdminUpdateProductPage(){
 
-    const [productId , setProductId] = useState("");
-    const [name, setName] = useState("");
-    const [description , setDescription] = useState("");
-    const [altName , setAltName] = useState("");
-    const [price , setPrice] = useState();
-    const [labelldPrice , setLabelldPrice] = useState();
-    const [category , setcategory] = useState("Others");
-    const [brand , setBrand] = useState("Standard")
-    const [model , setModel] = useState("");
-    const [isVisible , setIsVisible] = useState("true");
+    const location = useLocation()
+    const [productId , setProductId] = useState(location.state.productId);
+    const [name, setName] = useState(location.state.name);
+    const [description , setDescription] = useState(location.state.description);
+    const [altName , setAltName] = useState(location.state.altName.join(","));
+    const [price , setPrice] = useState(location.state.price);
+    const [labelldPrice , setLabelldPrice] = useState(location.state.labelldPrice);
+    const [category , setcategory] = useState(location.state.category);
+    const [brand , setBrand] = useState(location.state.brand)
+    const [model , setModel] = useState(location.state.model);
+    const [isVisible , setIsVisible] = useState(location.state.isVisible);
     const [files , setFiles] = useState([]);
     const navigate = useNavigate()
+
+    console.log(location)
     
-    async function AddProductHandle(){
+    async function handleUpdateProduct(){
         try{
 
             const token = localStorage.getItem("token");
@@ -35,11 +38,12 @@ export default function AdminAddProductPage(){
                 fileUploadPromises[i] = uploadFile(files[i])
             }
 
-            const imageURLs = await Promise.all(fileUploadPromises);
-            
+            let imageURLs = await Promise.all(fileUploadPromises);
+            if(imageURLs == 0){
+                imageURLs = location.state.images
+            }
 
-            await axios.post(import.meta.env.VITE_API_URL + "/product",{
-                productId : productId,
+            await axios.put(import.meta.env.VITE_API_URL + "/product/" + productId,{
                 name : name,
                 description : description,
                 altName : altName.split(","),
@@ -56,13 +60,13 @@ export default function AdminAddProductPage(){
                 Authorization: "Bearer " + token
             }})
 
-            toast.success("Product Add Successfull")
+            toast.success("Product Updated Successfull")
 
              navigate("/admin/product");
 
         }catch(err){
             //toast.error("Failed To Add Product")
-            toast.error(err?.response?.data?.message || "Failed to Add Product")
+            toast.error(err?.response?.data?.message || "Failed to Update Product")
             console.log(err)
             return;
         }
@@ -72,12 +76,12 @@ export default function AdminAddProductPage(){
     return(
         <div className=" w-full max-h-full flex flex-wrap items-start overflow-y-scroll hide-scroll-track">
 
-            <h1 className="w-full text-4xl font-bold mb-4 sticky top-0 bg-primary">Add New Product</h1>
+            <h1 className="w-full text-4xl font-bold mb-4 sticky top-0 bg-primary">Edit Products</h1>
 
             <div className="w-[50%] h-[100px] flex flex-col">
 
                 <label className="font-bold ml-3">Product ID</label>
-                <input value={productId} onChange={(e)=>{setProductId(e.target.value)}} placeholder="EX: ID000" className="border-4 rounded-[10px] border-accent h-[50px] p-3 m-3 focus: outline-white"></input>
+                <input value={productId} disabled onChange={(e)=>{setProductId(e.target.value)}} placeholder="EX: ID000" className="border-4 rounded-[10px] border-accent h-[50px] p-3 m-3 focus: outline-white"></input>
             </div>
 
             <div className="w-[50%] h-[100px] flex flex-col">
@@ -151,7 +155,7 @@ export default function AdminAddProductPage(){
             <div className="bg-white w-full h-[80px] rounded-b-2xl sticky bottom-0 flex justify-end items-center shadow-2xs gap-3">
 
                 <button className="bg-gray-400 rounded-3xl px-6 py-3 hover:bg-gray-500">Cansel</button>
-                <button onClick={AddProductHandle} className="bg-accent text-white font-bold px-6 py-3 rounded-3xl hover:bg-secondary mr-3">Add Product</button>
+                <button onClick={handleUpdateProduct} className="bg-accent text-white font-bold px-6 py-3 rounded-3xl hover:bg-secondary mr-3">Update Product</button>
                 
             </div>
             
