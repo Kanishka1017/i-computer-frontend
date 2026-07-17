@@ -12,7 +12,7 @@ export default function App() {
       <Toaster position="top-right"/>
       
       <Routes>
-        <Route path="/" element={<HomePage/>} />
+        <Route path="/*" element={<HomePage/>} />
         <Route path="/admin/*" element={<AdminPage/>} />
         <Route path="/login" element={<LoginPage/>} />
         <Route path="/test" element={<Test/>} />

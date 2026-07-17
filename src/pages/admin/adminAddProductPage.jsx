@@ -22,6 +22,11 @@ export default function AdminAddProductPage(){
     async function AddProductHandle(){
         try{
 
+            if(name == ""){
+                toast.error("product name cannot be empty")
+                return;
+            }
+
             const token = localStorage.getItem("token");
 
             if(token == null){
