@@ -8,7 +8,7 @@ export default function Cart(){
 
     const[cart , setCart] = useState(Getcart())
     return(
-        <div className="w-full h-[calc(100vh-100px)] overflow-y-scroll">
+        <div className="w-full h-[calc(100vh-100px)] overflow-y-scroll overflow-x-hidden">
 
             <div className=" w-full flex justify-center items-center flex-col gap-4 p-6 ">
 

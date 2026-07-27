@@ -3,6 +3,8 @@ import Getcart, { addToCart, getCartTotal } from "../../utils/cart"
 import { FaMinus, FaPlus } from "react-icons/fa"
 import getFormatedPrice from "../../utils/price"
 import { useLocation, useNavigate } from "react-router-dom"
+import CheakoutDetailsModal from "../../components/cheakoutDetailsModal"
+import Cart from "./cart"
 
 export default function Cheakout(){
 
@@ -13,6 +15,8 @@ export default function Cheakout(){
     if(location.state == null){
         navigate("/product")
     }
+
+
 
     return(
         <div className="w-full h-[calc(100vh-100px)] overflow-y-scroll">
@@ -77,8 +81,8 @@ export default function Cheakout(){
                 })
                 }
 
-                <div className="w-[600px] h-[100px] rounded-xl bg-white sticky bottom-0 shadow flex flex items-center justify-center">
-                    <button className="text-lg absolute left-1 font-semibold px-2 py-2 rounded-2xl bg-accent text-white hover:text-secondary">Buy Now</button>
+                <div className="w-[600px] h-[100px] rounded-xl bg-white sticky bottom-0 shadow flex items-center justify-center">
+                    <CheakoutDetailsModal cart={cart}/>
                     <span className="font-bold absolute right-5 text-lg border-double border-b-4">{getFormatedPrice(getCartTotal(cart))}</span>
                 </div>
 
@@ -88,3 +92,4 @@ export default function Cheakout(){
         </div>
     )
 }
+    
