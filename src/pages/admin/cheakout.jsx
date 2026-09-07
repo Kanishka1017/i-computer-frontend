@@ -1,10 +1,12 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import Getcart, { addToCart, getCartTotal } from "../../utils/cart"
 import { FaMinus, FaPlus } from "react-icons/fa"
 import getFormatedPrice from "../../utils/price"
 import { useLocation, useNavigate } from "react-router-dom"
 import CheakoutDetailsModal from "../../components/cheakoutDetailsModal"
 import Cart from "./cart"
+import axios from "axios"
+
 
 export default function Cheakout(){
 
@@ -16,8 +18,7 @@ export default function Cheakout(){
         navigate("/product")
     }
 
-
-
+   
     return(
         <div className="w-full h-[calc(100vh-100px)] overflow-y-scroll">
 

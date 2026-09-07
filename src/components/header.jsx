@@ -1,5 +1,6 @@
 import { FaShoppingCart } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import UserData from "./userData";
 
 export default function header(){
     return(
@@ -10,15 +11,16 @@ export default function header(){
                 <h1 className="text-lg font-bold ml-3 text-white">I-Computer</h1>
             </div>
 
-            <div className="h-full flex justify-center items-center gap-20 ml-120">
+            <div className="h-full flex justify-center items-center gap-20 ml-20">
                 <Link to="/" className="text-white text-lg hover:border-b-2">Home</Link>
                 <Link to="/products" className="text-white text-lg hover:border-b-2">products</Link>
                 <Link to="/about" className="text-white text-lg hover:border-b-2">About</Link>
                 <Link to="/contact" className="text-white text-lg hover:border-b-2">Contact</Link>
             </div>
 
-            <div>
-               <Link to="/cart" className="absolute right-10 text-2xl cursor-pointer fixed top-[40px]"><FaShoppingCart/></Link>
+            <div className="absolute right-10 flex h-full justify-center items-center gap-6">
+               <Link to="/cart" className="text-2xl cursor-pointer"><FaShoppingCart/></Link>
+               <UserData/>
             </div>
 
         </header>

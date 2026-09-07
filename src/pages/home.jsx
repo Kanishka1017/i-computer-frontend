@@ -4,6 +4,8 @@ import ProductPage from "./productPage"
 import ProductOverview from "./admin/overView"
 import Cart from "./admin/cart"
 import Cheakout from "./admin/cheakout"
+import MyOrdersPage from "./myOrders"
+import SettingsPage from "./settings"
 export default function HomePage(){
     return(
         <div className="w-full min-h-screen">
@@ -18,6 +20,8 @@ export default function HomePage(){
             <Route path="/cart" element={<Cart/>}/>
             <Route path="/overview/:productId" element={<ProductOverview/>}></Route>
             <Route path="/cheakout" element={<Cheakout/>}></Route>
+            <Route path="/my-orders" element={<MyOrdersPage/>}/>
+            <Route path="/settings" element={<SettingsPage/>}/>
 
             <Route path="/*" element={<div>404 Not Found</div>}></Route>
         </Routes>

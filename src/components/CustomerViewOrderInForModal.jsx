@@ -2,36 +2,11 @@ import { useState } from "react"
 import formatDateTime from "../utils/formatDateTime";
 import getFormatedPrice from "../utils/price";
 import { IoClose } from "react-icons/io5";
-import axios from "axios";
-import toast from "react-hot-toast";
 
-export default function ViewOrderInforModal(props){
+export default function CustomerViewOrderInforModal(props){
     const[isVisible , setIsVisible] = useState(false);
-    const order = props.order
-    const [status , setStatus] = useState(order.status);
-    const [note , setNote] = useState(order.note);
+    const order = props.order;
 
-    async function handleChange(){
-        try{
-            const token = localStorage.getItem("token");
-
-            await axios.put(import.meta.env.VITE_API_URL+"/order/"+order.orderId, {
-                status : status,
-                note : note
-            },{
-                headers : {
-                    "Authorization" : `Bearer ${token}`
-                }
-            });
-            toast.success("Order update successfully"); 
-            window.location.reload();
-
-        }catch(error){
-            console.error(error)
-            toast.error("Failed to update order");
-
-        }
-    }
 
     return(
     <>
@@ -66,17 +41,12 @@ export default function ViewOrderInforModal(props){
                             <div className="w-full h-[40px] flex justify-between items-center">
                                 <h1 className="text-white text-2xl font-bold p-5">{getFormatedPrice(order.total)}</h1>
                                 <h2 className="text-white p-5 text-lg font-semibold">Status: {order.status}</h2>
-                                <select value={status} onChange={(e) => setStatus(e.target.value)} className="mr-4">
-                                    <option value= "Pending"> Pending</option>
-                                    <option value= "Shipped"> Shipped</option>
-                                    <option value= "Deliverd">Deliverd</option>
-                                    <option value= "Canceled"> Canceled</option>
-                                </select>
+                
                             </div>
 
                             <div className="w-full flex items-center">
                                 <h1 className="text-white font-semibold p-5 text-lg">Notes: </h1>
-                                <textarea value={note} onChange={(e)=>setNote(e.target.value)} className="w-[350px] text-white border-black p-1 border rounded-lg m-5 outline-0"></textarea>
+                            <p>{order.note}</p>
                             </div>
                         </div>
 
@@ -103,12 +73,6 @@ export default function ViewOrderInforModal(props){
                                 )
                             }
                         </div>
-
-                        {(order.status != status || order.note != note) &&
-                            
-                            <button onClick={handleChange} className="bottom-5 right-5 absolute bg-accent rounded-lg py-3 px-3 text-white">
-                                Save changes
-                            </button>}
 
                     </div>
                 </div>

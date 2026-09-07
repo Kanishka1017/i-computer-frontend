@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import header from "./header";
 import axios from "axios";
+import { Navigate, useNavigate } from "react-router-dom";
 
 export default function CheakoutDetailsModal(props){
 
@@ -13,7 +14,34 @@ export default function CheakoutDetailsModal(props){
     const[city , setCity] = useState("");
     const[postalCode , setPostalCode] = useState("");
     const[phone , setPhone] = useState("")
+    const navigate = useNavigate();
 
+     useEffect(
+        ()=>{
+            const token = localStorage.getItem("token");
+            
+            if(token == null){
+                toast.error("Pleace Log to continue cheakout")
+                Navigate("/login");
+            }
+            axios.get(import.meta.env.VITE_API_URL+"/user/profile",{
+                headers:{
+                    "Authorization" : `Bearer ${token}` 
+                }
+            }).then(
+                (Response)=>{
+                    console.log(Response.data)
+                    setFirstName(Response.data.firstName)
+                    setLastName(Response.data.lastName)
+                }
+            ).catch(
+                    ()=>{
+                        localStorage.removeItem("token");
+                        window.location.href="login";
+                    }
+                )
+        },[]
+    )
 
     const cart = props.cart;
     async function placeOrder(){
