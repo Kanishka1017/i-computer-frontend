@@ -63,7 +63,7 @@ export default function LoginPage(){
     return(
         <div className="w-full h-full bg-[url('/background.jpg')] bg-cover bg-no-repeat flex">
 
-            <div className="w-[50%] h-full flex flex-col justify-center items-center">
+            <div className="w-[50%] h-full hidden lg:flex flex-col justify-center items-center">
 
                 <img src="/logo.png" className="w-[500px] rounded-2xl mt-[50px]"/>
 
@@ -71,9 +71,13 @@ export default function LoginPage(){
 
             </div>
 
-            <div className="w-[50%] h-full flex items-center justify-center">
+            <div className="w-full lg:w-[50%] h-full flex items-center justify-center">
 
                 <div className="backdrop-blur-md w-[450px] h-[600px] shadow-2x2 rounded-2xl flex flex-col justify-center">
+
+                <img src="/logo.png" className="w-[100px] mx-auto lg:hidden"/>
+
+                <h1 className="m-[20px] text-2xl font-semibold text-white mt-4 ml-38 lg:hidden">I-COMPUTER</h1>
 
                     <input
                     type="email"

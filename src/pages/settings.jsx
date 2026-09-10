@@ -85,7 +85,7 @@ export default function settingsPage(){
     }
 
     return(
-        <div className="w-full min-h-[calc(100vh-100px)] flex flex-row justify-center items-center gap-6 py-6">
+        <div className="w-full min-h-[calc(100vh-100px)] flex flex-col lg:flex-row justify-center bg-primary items-center gap-6 py-6">
 
             <div className="w-[90%] max-w-[400px] rounded-lg bg-white p-5 flex flex-col gap-3">
                 

@@ -15,7 +15,7 @@ export default function Cart(){
                 {
                     cart.map((cartItem , index)=>{
                     return (
-                        <div key={index} className="w-[600px] h-[150px] bg-white flex rounded-lg overflow-hidden">
+                        <div key={index} className="w-full lg:w-[600px] lg:h-[150px] bg-white flex rounded-lg overflow-hidden items-center">
                             <img className="h-[150px] object-cover aspect-square"src={cartItem.product.image} alt={cartItem.name}/>
 
                             <div className="h-full w-[300px] p-3 ml-2">
@@ -23,17 +23,17 @@ export default function Cart(){
                                 <p className="text-xs text-gray-500">{cartItem.product.productId}</p>
                                 <h1 className="font-bold text-lg">{cartItem.product.name}</h1>
 
-                                <div className="w-[210px] h-[50px] border border-accent rounded-full mt-2 overflow-hidden  flex">
+                                <div className="lg:w-[210px] h-[50px] border border-accent rounded-full mt-2 overflow-hidden flex justify-center">
                                     <button onClick={
                                         ()=>{
                                             addToCart(cartItem.product , -1)
                                             setCart(Getcart())
                                         }
-                                    } className="h-full w-[70px] flex items-center justify-center border-r border-r-accent cursor-pointer text-lg font-bold hover:bg-accent">
+                                    } className="h-full lg:w-[70px] flex items-center justify-center border-r border-r-accent cursor-pointer text-lg font-bold hover:bg-accent">
                                         <FaMinus />
                                     </button>
 
-                                    <span className="w-[70px] h-full flex items-center justify-center font-bold text-lg text-gray-500">
+                                    <span className="lg:w-[70px] h-full flex items-center justify-center font-bold text-lg text-gray-500">
                                         {cartItem.qty}
                                     </span>
 
@@ -42,7 +42,7 @@ export default function Cart(){
                                             addToCart(cartItem.product , 1)
                                             setCart(Getcart())
                                         }
-                                    } className="w-[70px] h-full border-l border-l-accent flex items-center justify-center cursor-pointer text-lg font-bold hover:bg-accent">
+                                    } className="lg:w-[70px] h-full border-l border-l-accent flex items-center justify-center cursor-pointer text-lg font-bold hover:bg-accent">
                                         <FaPlus />
                                     </button>
                                 </div>
@@ -65,7 +65,7 @@ export default function Cart(){
                 })
                 }
 
-                <div className="w-[600px] h-[100px] rounded-xl bg-white sticky bottom-0 shadow flex flex items-center justify-center">
+                <div className="w-full lg:w-[600px] h-[100px] rounded-xl bg-white sticky bottom-0 shadow flex flex items-center justify-center">
                     <Link state={cart} to={"/cheakout"} className="text-lg absolute left-1 font-semibold px-2 py-2 rounded-2xl bg-accent text-white hover:text-secondary">cheakout</Link>
                     <span className="font-bold absolute right-5 text-lg border-double border-b-4">{getFormatedPrice(getCartTotal(cart))}</span>
                 </div>

@@ -29,21 +29,31 @@ useEffect(
 )
 
     return(
-        <div className="w-full h-[calc(100vh-100px)] flex justify-center items-center">
+        <div className="w-full lg:h-[calc(100vh-100px)] flex justify-center items-center lg:pt-3">
 
             {
             product == null? <LoadingAnimation/> : 
-            <div className="w-full h-full flex">
+            <div className="w-full flex flex-col lg:flex-row bg-primary">
+                <h1 className="font-bold text-2xl text-secondary p-4 lg:hidden">{product.name}
 
-                <div className="w-[50%] h-full flex items-center justify-center">
+                        {
+                            product.altName.map((altName , index)=>{
+                                return(
+                                    <span key={index} className="text-gray-500 font-medium"> | {altName}</span>
+                                )
+                            })
+                        }
+
+                    </h1>
+                <div className="w-full lg:w-[50%] lg:h-full flex items-center justify-center">
 
                     <ImageSlideShow images={product.images}/>
 
                 </div>
 
-                <div className="w-[50%] h-full p-5 flex  justify-center flex-col">
+                <div className="lg:w-[50%] h-full p-5 flex  justify-center flex-col">
 
-                    <h1 className="font-bold text-2xl text-secondary">{product.name}
+                    <h1 className="font-bold text-2xl text-secondary hidden lg:block">{product.name}
 
                         {
                             product.altName.map((altName , index)=>{

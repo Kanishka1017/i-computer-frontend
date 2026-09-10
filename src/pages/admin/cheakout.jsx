@@ -27,7 +27,7 @@ export default function Cheakout(){
                 {
                     cart.map((cartItem , index)=>{
                     return (
-                        <div key={index} className="w-[600px] h-[150px] bg-white flex rounded-lg overflow-hidden">
+                        <div key={index} className="lg:w-[600px] h-[150px] bg-white flex rounded-lg overflow-hidden">
                             <img className="h-[150px] object-cover aspect-square"src={cartItem.product.image} alt={cartItem.name}/>
 
                             <div className="h-full w-[300px] p-3 ml-2">
@@ -82,7 +82,7 @@ export default function Cheakout(){
                 })
                 }
 
-                <div className="w-[600px] h-[100px] rounded-xl bg-white sticky bottom-0 shadow flex items-center justify-center">
+                <div className="w-full lg:w-[600px] h-[100px] rounded-xl bg-white sticky bottom-0 shadow flex items-center justify-center">
                     <CheakoutDetailsModal cart={cart}/>
                     <span className="font-bold absolute right-5 text-lg border-double border-b-4">{getFormatedPrice(getCartTotal(cart))}</span>
                 </div>
