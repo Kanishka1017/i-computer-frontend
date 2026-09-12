@@ -2,12 +2,39 @@ import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
+import { useGoogleLogin } from "@react-oauth/google";
 
 export default function LoginPage(){
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const navigate = useNavigate()
+    const googleLogin =  useGoogleLogin(
+        {
+            onSuccess: (respones)=>{
+                axios.post(import.meta.env.VITE_API_URL + "/user/google-login", {token: respones.access_token}).then(
+                    (respones)=>{
+                        toast.success("Login Successfull")
+                        localStorage.setItem("token", respones.data.token)
+
+                        if(respones.data.token == "admin"){
+                            navigate("/admin")
+                        }else{
+                            navigate("/")
+                        }
+                    }
+                ).catch(
+                    (err)=>{
+                        toast.error(err?.respones?.data?.message || "Google login failed . pleace try again")
+                    }
+                )
+            },
+
+            onError: (error)=>{
+                toast.error("Google login failed. pleace try again")
+            }
+        }
+    )
 
     //function Login(){
 
@@ -105,7 +132,7 @@ export default function LoginPage(){
 
                     <button onClick={Login} className="m-5 p-3 w-[90%] h-[50px] bg-accent rounded-2xl text-white font-bold">Sign up</button>
 
-                    <button className="m-5 p-3 w-[90%] h-[50px] border border border-accent rounded-2xl text-white font-bold">Sign up with Google</button>
+                    <button onClick={googleLogin} className="m-5 p-3 w-[90%] h-[50px] border border border-accent rounded-2xl text-white font-bold">Sign up with Google</button>
 
                     <p className="w-full text-right">Don't have an account? <Link to="/register" className="text-accent p-[10px]">Sign up</Link></p>
                 </div>
