@@ -130,11 +130,11 @@ export default function LoginPage(){
 
                     <p className="w-full text-right">Forgot Pasword? <Link to="/forgot-password" className="text-accent p-[10px]">Reset</Link></p>
 
-                    <button onClick={Login} className="m-5 p-3 w-[90%] h-[50px] bg-accent rounded-2xl text-white font-bold">Sign up</button>
+                    <button onClick={Login} className="m-5 p-3 w-[90%] h-[50px] bg-accent rounded-2xl text-white font-bold cursor-pointer">Sign up</button>
 
                     <button onClick={googleLogin} className="m-5 p-3 w-[90%] h-[50px] border border border-accent rounded-2xl text-white font-bold">Sign up with Google</button>
 
-                    <p className="w-full text-right">Don't have an account? <Link to="/register" className="text-accent p-[10px]">Sign up</Link></p>
+                    <p className="w-full text-right">Don't have an account? <Link to="/register" className="text-accent p-[10px]">Register</Link></p>
                 </div>
 
             </div>    

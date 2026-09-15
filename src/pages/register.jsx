@@ -144,7 +144,7 @@ export default function RegisterPage(){
 
                     <button onClick={googleLogin} className="m-5 p-3 w-[90%] h-[50px] border border border-accent rounded-2xl text-white font-bold">Sign up with Google</button>
 
-                    <p className="w-full text-right">Already have an account? <Link to="/register" className="text-accent p-[10px]">Register</Link></p>
+                    <p className="w-full text-right">Already have an account? <Link to="/Login" className="text-accent p-[10px]">Sign Up</Link></p>
                 </div>
 
             </div>    
