@@ -44,7 +44,7 @@ export default function MyOrdersPage(){
 
 
     return(
-        <div className="w-full h-full overflow-x-scroll hide-scroll-track relative">
+        <div className="w-full h-full overflow-x-scroll hide-scroll-track relative bg-primary">
 
             <div className="sticky left-0 flex items-center justify-between px-5 py-5 bg-primary border-b border-secondary/10 text-2xl font-bold">
 
