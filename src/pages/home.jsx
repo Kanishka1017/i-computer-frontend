@@ -6,13 +6,14 @@ import Cart from "./admin/cart"
 import Cheakout from "./admin/cheakout"
 import MyOrdersPage from "./myOrders"
 import SettingsPage from "./settings"
+import LandingPage from "./landingPage"
 export default function HomePage(){
     return(
         <div className="w-full min-h-screen">
             <Header/>
 
         <Routes>
-            <Route path="/" element={<div>Home Page Content</div>}></Route>
+            <Route path="/" element={<LandingPage/>}></Route>
             <Route path="/about" element={<div>About Page Content</div>}></Route>
             <Route path="/contact" element={<div>Contact Page Content </div>}></Route>
 

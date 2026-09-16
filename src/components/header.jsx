@@ -10,7 +10,7 @@ export default function header(){
     const [isOpen, setIsOpen] = useState(false)
 
     return(
-        <header className="h-[100px] sticky top-0 bg-accent relative flex items-center justify-center relative z-1">
+        <header className="h-[100px] sticky top-0 bg-accent relative flex items-center justify-center relative z-100">
 
             <GiHamburgerMenu onClick={()=>{setIsOpen(true)}} className="absolute left-5 lg:hidden cursor-pointer text-white"/>
 
@@ -55,3 +55,5 @@ export default function header(){
         </header>
     )
 }
+
+//commite 03
